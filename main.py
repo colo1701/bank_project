@@ -1,4 +1,3 @@
-import bcrypt
 from bank import ConsoleDesign
 from bank import Account
 

@@ -1,5 +1,3 @@
-import bcrypt
-
 class ConsoleDesign():
     def head():
         print("")
@@ -9,9 +7,10 @@ class ConsoleDesign():
 class Account():
     def __init__(self):
         ConsoleDesign.head()
+        print("Creating account")
         self.name = input("Please enter account name: ")
         self.amount = 0
-        self.password = bcrypt.hashpw(input("Please enter your new account password: "))
+        self.password = input("Please enter your new account password: ")
         self.active = True
         print("New Account initiated for {}. The initial balance is 0.".format(self.name))
         print("Please don't forget your password!")
@@ -21,7 +20,7 @@ class Account():
         print("Depositing {} in Account of {}".format(cash, self.name))
         if self.active == False: return print("Account does not exist!")
         if cash <= 0: return print("The amount has to be positive!")
-        if bcrypt.hashpw(input("Hello {}, please enter password: ".format(self.name))) != self.password:
+        if input("Hello {}, please enter password: ".format(self.name)) != self.password:
             return print("Incorrect password!")
         self.amount += cash
         return print("The new balance is {}.".format(self.amount))
@@ -30,7 +29,7 @@ class Account():
         ConsoleDesign.head()
         print("Showing Account of {}".format(self.name))
         if self.active == False: return print("Account does not exist!")
-        if bcrypt.hashpw(input("Hello {}, please enter password: ".format(self.name))) != self.password:
+        if input("Hello {}, please enter password: ".format(self.name)) != self.password:
             return print("Incorrect password!")
         return print("The actual balance is {}.".format(self.amount))
 
@@ -39,7 +38,7 @@ class Account():
         print("Withdrawing {} from Account of {}".format(cash, self.name))
         if self.active == False: return print("Account does not exist!")
         if cash <= 0: return print("The amount has to be positive!")
-        if bcrypt.hashpw(input("Hello {}, please enter password: ".format(self.name))) != self.password:
+        if input("Hello {}, please enter password: ".format(self.name)) != self.password:
             return print("Incorrect password!")
         if self.amount - cash < 0: return print("You can't withdraw more than you have in your account!")
         self.amount -= cash
@@ -48,7 +47,7 @@ class Account():
     def kill(self):
         ConsoleDesign.head()
         print("Deleting Account of {}".format(self.name))
-        if bcrypt.hashpw(input("Hello {}, please enter password: ".format(self.name))) != self.password:
+        if input("Hello {}, please enter password: ".format(self.name)) != self.password:
             return print("Incorrect password!")
         self.active = False
         return print("Account deleted!")
@@ -59,7 +58,7 @@ class Account():
         if self.active == False: return print("Account does not exist!")
         if cash <= 0: return print("The amount has to be positive!")
         if receiver.active != True: return print("Receiving account does not exist!")
-        if bcrypt.hashpw(input("Hello {}, please enter password: ".format(self.name))) != self.password:
+        if input("Hello {}, please enter password: ".format(self.name)) != self.password:
             return print("Incorrect password!")
         if self.amount - cash < 0: return print("You can't transfer more than you have in your account!")
         self.amount -= cash
