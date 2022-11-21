@@ -1,17 +1,13 @@
 from bank import ConsoleDesign
 from bank import Account
 
-account1 = Account()
-account2 = Account()
+if __name__ == "__main__":
+    account_list = []
+    account_list.append(Account(len(account_list)))
+    account_list.append(Account(len(account_list)))
 
-account1.show()
-account2.show()
+    for i in account_list:
+        i.show()
 
-account1.deposit(1000)
-
-account2.kill()
-
-account1.transfer(account2, 300)
-
-account1.show()
-account2.show()
+    ConsoleDesign.head()
+    print("Ending program...")
