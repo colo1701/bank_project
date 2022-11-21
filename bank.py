@@ -5,14 +5,16 @@ class ConsoleDesign():
         print("")
 
 class Account():
-    def __init__(self):
+    def __init__(self, number):
         ConsoleDesign.head()
         print("Creating account")
+        self.number = number
         self.name = input("Please enter account name: ")
         self.amount = 0
         self.password = input("Please enter your new account password: ")
         self.active = True
-        print("New Account initiated for {}. The initial balance is 0.".format(self.name))
+        print("New Account initiated for {}.\nThe initial balance is 0.".format(self.name))
+        print("The account number is {}.".format(self.number))
         print("Please don't forget your password!")
 
     def deposit(self, cash):
@@ -31,7 +33,7 @@ class Account():
         if self.active == False: return print("Account does not exist!")
         if input("Hello {}, please enter password: ".format(self.name)) != self.password:
             return print("Incorrect password!")
-        return print("The actual balance is {}.".format(self.amount))
+        return print("The actual balance of account number {} is {}.".format(self.number, self.amount))
 
     def withdraw(self, cash):
         ConsoleDesign.head()
