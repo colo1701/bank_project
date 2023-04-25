@@ -138,7 +138,9 @@ def accTransfer():
                 if df[df.CUSTOMER_ID == s_account].BALANCE.item() - amount - df[df.CUSTOMER_ID == s_account].OVERDRAFT.item() >= 0:
                     print("You want to transfer {} to Account {}.".format(amount, r_account))
                     confirmation = input("Is this correct (y/n)? ")
-                    if confirmation.lower() == 'y':
+                    if confirmation.lower() != 'y':
+                        print("Transfer was not confirmed!")
+                    else:
                         s_final_balance = s_initial_balance - amount
                         r_initial_balance = round(df[df.CUSTOMER_ID == r_account].BALANCE.item(), 2)
                         r_final_balance = r_initial_balance + amount
@@ -162,15 +164,11 @@ def accTransfer():
                             rf.close()
                         print("Transaction done!")
                         print("Your new balance is {}.".format(round(df[df.CUSTOMER_ID == s_account].BALANCE.item(), 2)))
-                    else: print("Transfer was not confirmed!")
                 else: print("Your balance is too low!")
             else: print("Amount has to be larger than 0!")
         else: print("Receivers Account number is not correct!")
     else: print("Your Account number and/or password is not correct!")
-        
-        
-        
-        
+
 if __name__ == '__main__':
     '''
     Load account database, set column types and remove indizes.
