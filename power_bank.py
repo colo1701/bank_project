@@ -5,6 +5,10 @@ from datetime import datetime
 pd.options.mode.chained_assignment = None  # default='warn'
 
 def hashHead():
+    '''
+    Add an empty line, a line of 80 hashes and another empty line.
+    This is a function designed to separate two operations from each other.
+    '''
     print('')
     print('#' * 80)
     print('')
